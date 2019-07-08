@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: greeting-service
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${random.value}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+
+logging:
+  level:
+    reactor.netty: debug
+   
+server:
+  port: 9090

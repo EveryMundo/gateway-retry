@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+      - id: greeting-service
+        uri: lb://greeting-service
+        predicates:
+        - Path=/greeting-service/**
+        filters:
+        - Retry
+        - RewritePath=/greeting-service/(?<path>.*), /$\{path}
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5  
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${random.value}
+
+logging:
+  level:
+    reactor.netty: debug
+
+server:
+  port: 8080
