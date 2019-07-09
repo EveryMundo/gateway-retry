@@ -1,0 +1,16 @@
+== Spring Cloud Gateway Retry filter POC
+
+=== Versions
+
+* Spring Boot 2.1.6.RELEASE
+* Spring Cloud Greenwich.SR2
+
+
+=== Steps to reproduce the error
+
+* Run the Eureka service, it will listen on port 8761. 
+* Run the Greeting service, it will listen on port 9090. It will purposely fail 50% of the requests. 
+* Run the Gateway service, it will listen on port 8080.
+* Run the client application.
+** It will perform 20 GET requests to endpoint http://localhost:8080/greeting-service/hello - The  Retry filter will ensure all of them are successful. 
+** It will perform 20 POST requests with a JSON payload to endpoint http://localhost:8080/greeting-service/hello - The Retry filter doesn't guarantee the successfull execution when the underlying service fails.
