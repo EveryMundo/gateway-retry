@@ -18,6 +18,7 @@
 		<module>eureka-service</module>
 		<module>gateway-service</module>
 		<module>greeting-service</module>
+		<module>client</module>
 	</modules>
 
 	<dependencyManagement>
